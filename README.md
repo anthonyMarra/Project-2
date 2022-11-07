@@ -11,6 +11,7 @@
 
 ![discover](./discover.jpg)
 
+![discover](./ERD.png)
 
 ☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.
 

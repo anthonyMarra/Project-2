@@ -9,7 +9,7 @@
 
 - ERD: https://lucid.app/lucidchart/195e0f90-308f-4b0b-874c-733317d91780/edit?viewport_loc=-59%2C248%2C1280%2C616%2C0_0&invitationId=inv_97199d04-6f93-4f23-bae8-2be2b7e4b5c4
 
-![discover](./discover.png)
+![discover](./discover.jpg)
 
 
 ☐ Screenshot(s): A screenshot of your app's landing page and any other screenshots of interest.

@@ -14,14 +14,7 @@ const userSchema = new Schema(
   { timeStamps: true }
 );
 
-const contractSchema = new Schema(
-  {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    price: Number,
-    beds: Number,
-    bath: Number
-  }
-);
+
 
 module.exports = mongoose.model("User", userSchema);
-module.exports = mongoose.model("Contract", contractSchema);
+

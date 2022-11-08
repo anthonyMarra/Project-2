@@ -10,5 +10,11 @@ function create(req, res) {
         }
     })
 }
+function index(req, res) {
+    Contract.find({}, function (err, contracts) {
+        res.render("contracts/index", { contracts })
+    })
 
-module.exports = { create }
+}
+
+module.exports = { create, index }

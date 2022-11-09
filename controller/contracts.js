@@ -1,20 +1,37 @@
 const Contract = require("../models/contract")
 
 function create(req, res) {
-    const contract = new contract(req.body)
+    req.body.user = req.user
+    const contract = new Contract(req.body)
+
     contract.save(function (err) {
         if (err) {
-            return res.render("contracts/new")
+            return res.render("contracts/new", { title: "Creating New Contract" })
         } else {
-            return res.redirect(`contracts/${contract._id}`)
+            return res.redirect("contracts")
+            //`contracts/${contract._id}`
         }
     })
 }
 function index(req, res) {
-    Contract.find({}, function (err, contracts) {
-        res.render("contracts/index", { contracts })
+    Contract.find().populate("user").then(function (populated) {
+        console.log(populated)
+        res.render("contracts/index", { contracts: populated, title: "Browse Contracts" })
+    }).catch(function (err) {
+        console.log(err)
     })
+}
+function newContract(req, res) {
+    res.render("contracts/new", { title: "Add Contract" })
+}
+
+function show(req, res) {
 
 }
 
-module.exports = { create, index }
+module.exports = {
+    create,
+    index,
+    new: newContract,
+    show
+}

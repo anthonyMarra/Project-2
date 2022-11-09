@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+    <h1><img src=<%=user.avatar%> alt="Seller's Profile Picture" width=“500” height="82"></h1>
+    <li>
+        User's Name: <%=user.name%>
+    </li>
+    <li>
+        User's Email: <%=user.email%>
+    </li>
+
+    <%user.wishList.forEach(element=> {%>
+        <li>
+            <%=element%>
+        </li>
+        <%});%>
+            <% if (user.wishList.length==0) { %>
+                <p>No Item's in your wishList</p>
+                <%}%>
+
+
+                    <%- include('../partials/footer') %>

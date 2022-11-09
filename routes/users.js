@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const userController = require("../controller/user")
+const isLoggedIn = require("../config/auth");
 
 /* GET users listing. */
-router.get('/', userController.index);
+router.get('/', isLoggedIn, userController.index);
 
-router.post("/", userController.create)
+router.post("/", isLoggedIn, userController.create)
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { arrayBuffer } = require("stream/consumers");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -10,6 +11,7 @@ const userSchema = new Schema(
     },
     email: String,
     avatar: String,
+    wishList: Array,
   },
   { timeStamps: true }
 );

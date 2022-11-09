@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>
-
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <p>Welcome to User's Page
-    </p>
-    <ul>
-        <li><a href="/">Home</a></li>
+<%- include('../partials/header') %>
+    <%contracts.forEach(element=> {%>
+        <h1><img src=<%=element.user.avatar%> alt="Seller's Profile Picture" width=“500” height="82"></h1>
+        <li>
+            Seller's Name: <%=element.user.name%>
+        </li>
+        <li>
+            Seller's Email: <%=element.user.email%>
+        </li>
+        <li>
+            Contract Price Per Month: $<%=element.price%>
+        </li>
+        <li>
+            Amount of Beds: <%=element.beds%>
+        </li>
+        <li>
+            Amount of Bathrooms: <%=element.bath%>
+        </li>
         <% if (user) { %>
-            <li><a href="/private">Private Page</a></li>
-            <li><a href="/logout">Log Out</a></li>
-            <% } else { %>
-                <li><a href="/auth/google">Log In</a></li>
-                <% } %>
-    </ul>
+            <li>
+                <input type="button" value="Add Contract to Wish List" onClick="window.location.reload(true)">
+                <input type="button" value="Add Contract to Wish List"
+                    onClick=user.wishList=user.wishList.push(element)>
+            </li>
+            <%}%>
 
-    <%contracts.forEach(element=> {
-        element.user
-        });%>
-
-</body>
-
-</html>
+                <%});%>
+                    <%- include('../partials/footer') %>

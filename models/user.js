@@ -12,6 +12,7 @@ const userSchema = new Schema(
     email: String,
     avatar: String,
     wishList: Array,
+    contracts: Array,
   },
   { timeStamps: true }
 );

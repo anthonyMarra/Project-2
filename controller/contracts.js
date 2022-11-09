@@ -24,6 +24,9 @@ function index(req, res) {
 function newContract(req, res) {
     res.render("contracts/new", { title: "Add Contract" })
 }
+function deleteContract(req, res) {
+
+}
 
 function show(req, res) {
 
@@ -33,5 +36,6 @@ module.exports = {
     create,
     index,
     new: newContract,
-    show
+    show,
+    delete: deleteContract
 }

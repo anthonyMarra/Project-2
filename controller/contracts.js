@@ -1,3 +1,4 @@
+const { receiveMessageOnPort } = require("worker_threads")
 const Contract = require("../models/contract")
 
 function create(req, res) {
@@ -15,7 +16,6 @@ function create(req, res) {
 }
 function index(req, res) {
     Contract.find().populate("user").then(function (populated) {
-        console.log(populated)
         res.render("contracts/index", { contracts: populated, title: "Browse Contracts" })
     }).catch(function (err) {
         console.log(err)
@@ -24,18 +24,53 @@ function index(req, res) {
 function newContract(req, res) {
     res.render("contracts/new", { title: "Add Contract" })
 }
-function deleteContract(req, res) {
 
+function deleteContract(req, res, next) {
+    Contract.findOne({
+        "_id": req.params.id,
+        "user": req.user.id
+    })
+        .then(function (contract) {
+            if (!contract) {
+                return res.redirect("/contracts")
+            }
+            contract.remove(req.params.id)
+        })
+        .then(function (contract) {
+            if (!contract) {
+                res.redirect("/contracts")
+            }
+        })
+        .catch(function (err) {
+            return next(err)
+        })
 }
 
-function show(req, res) {
-
+function update(req, res) {
+    Contract.findOne({
+        "_id": req.params.id,
+        "user": req.user.id
+    })
+        .then(function (contract) {
+            if (!contract) {
+                return res.redirect("/contracts")
+            }
+            contract.remove(req.params.id)
+        })
+        .then(function (contract) {
+            if (!contract) {
+                // res.redirect("/")
+            }
+        })
+        .catch(function (err) {
+            return next(err)
+        })
 }
 
 module.exports = {
     create,
     index,
     new: newContract,
-    show,
+    update,
     delete: deleteContract
 }

@@ -18,15 +18,22 @@
         </li>
         <% if (user && user.id==element.user.id) { %>
             <!-- <input type="button" value="Delete this Contract" onClick="window.location.reload(true)"> -->
-            <form action="/contracts/<%=element.id%>?_method=DELETE" method="POST"><button type="submit">Delete
-                    Contract</button></form>
+            <form action="/contracts/<%=element.id%>?_method=DELETE" method="POST">
+                <button type="submit">Delete Contract</button>
+            </form>
+            <form action="/contracts/<%=element.id%>?_method=PUT" method="POST">
+                <button type="submit">Edit Contract</button>
+            </form>
             <!-- ask Sam for help with this button -->
             <% }else if (user) { %>
                 <li>
-                    <input type="button" value="Add Contract to Wish List" onClick=user.wishList.push(element)>
-                    <!-- make this add to wishList -->
+                    <!-- <input type="button" value="Add Contract to Wish List" <%#wishList(element)%>> -->
                 </li>
                 <%}%>
 
                     <%});%>
-                        <%- include('../partials/footer') %>
+                        </main>
+                        </body>
+                        <script src="wishListClick.js"></script>
+
+                        </html>

@@ -7,6 +7,8 @@ const isLoggedIn = require("../config/auth");
 router.get('/', contractsController.index);
 router.get("/new", isLoggedIn, contractsController.new)
 router.post("/", contractsController.create)
+router.delete("/:id", isLoggedIn, contractsController.delete)
+router.put("/:id", isLoggedIn, contractsController.update)
 
 
 module.exports = router;

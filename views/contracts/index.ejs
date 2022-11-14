@@ -1,39 +1,49 @@
 <%- include('../partials/header') %>
-    <%contracts.forEach(element=> {%>
-        <h1><img src=<%=element.user.avatar%> alt="Seller's Profile Picture" width=“500” height="82"></h1>
-        <li>
-            Seller's Name: <%=element.user.name%>
-        </li>
-        <li>
-            Seller's Email: <%=element.user.email%>
-        </li>
-        <li>
-            Contract Price Per Month: $<%=element.price%>
-        </li>
-        <li>
-            Amount of Beds: <%=element.beds%>
-        </li>
-        <li>
-            Amount of Bathrooms: <%=element.bath%>
-        </li>
-        <% if (user && user.id==element.user.id) { %>
-            <!-- <input type="button" value="Delete this Contract" onClick="window.location.reload(true)"> -->
-            <form action="/contracts/<%=element.id%>?_method=DELETE" method="POST">
-                <button type="submit">Delete Contract</button>
-            </form>
-            <form action="/contracts/<%=element.id%>?_method=PUT" method="POST">
-                <button type="submit">Edit Contract</button>
-            </form>
-            <!-- ask Sam for help with this button -->
-            <% }else if (user) { %>
-                <li>
-                    <!-- <input type="button" value="Add Contract to Wish List" <%#wishList(element)%>> -->
-                </li>
-                <%}%>
 
-                    <%});%>
-                        </main>
-                        </body>
-                        <script src="wishListClick.js"></script>
+    <%#contracts.forEach(element=> {%>
+        <%for(let i=0; i < contracts.length; i++) {%>
+            <h1><img src=<%=contracts[i].user.avatar%> alt="Seller's Profile Picture" width=“500” height="82"></h1>
+            <li>
+                Seller's Name: <%=contracts[i].user.name%>
+            </li>
+            <li>
+                Seller's Email: <%=contracts[i].user.email%>
+            </li>
+            <li>
+                Contract Price Per Month: $<%=contracts[i].price%>
+            </li>
+            <li>
+                Amount of Beds: <%=contracts[i].beds%>
+            </li>
+            <li>
+                Amount of Bathrooms: <%=contracts[i].bath%>
+            </li>
+            <% if (user && user.id==contracts[i].user.id) { %>
+                <!-- <input type="button" value="Delete this Contract" onClick="window.location.reload(true)"> -->
+                <form action="/contracts/<%=contracts[i].id%>?_method=DELETE" method="POST">
+                    <button type="submit">Delete Contract</button>
+                </form>
+                <!-- <form action="/contracts/<%#=contracts[i].id%>?_method=PUT" method="POST"> -->
+                <!-- <button type="submit">Edit Contract</button> -->
+                <!-- </form> -->
+                <!-- <a href="/contracts/update/<%#=contracts[i]._id%>">Update Contract</a> -->
+                <!-- <form action="/contracts/update/<%#=contracts[i].id%>" method="POST"> -->
+                <!-- <button type="submit">Update Contract</button> -->
+                <!-- </form> -->
+                <% }else if (user) { %>
+                    <li>
+                        <!-- <a href="/contracts/update/<%#=contracts[i]._id%>">Add To Wishlist</a>
+                        <form action="/update/update" method="POST">
+                            <input type="submit" value="Add Contract to Wish List"
+                                class="wishList <%#=contracts[i]._id%>" <%#wishList(contracts[i])%>> -->
+                        <!-- </form> -->
+                        <input type="button" value="Add Contract to Wish List" class="wishList <%=contracts[i]._id%>"
+                            <%#wishList(contracts[i])%>>
+                    </li>
+                    <%}%>
+                        <%}%>
+                            </main>
+                            </body>
+                            <script src="../controller/wishListClick.js"></script>
 
-                        </html>
+                            </html>

@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+
+
+    <form id="new-form" action="/contracts" method="POST">
+        <label>Monthly Cost:</label>
+        <input type="Number" name="price"> </br>
+        <label>Number of Bedrooms:</label>
+        <input type="Number" name="beds"></br>
+        <label>Number of Bathrooms:</label>
+        <input type="Number" name="bath"></br>
+        <input type="submit" value="Add Contract">
+    </form>
+    <%- include('../partials/footer') %>

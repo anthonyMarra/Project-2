@@ -8,4 +8,6 @@ router.get('/', isLoggedIn, userController.index);
 
 router.post("/", isLoggedIn, userController.create)
 
+router.put("/update/:id", isLoggedIn, userController.update)
+
 module.exports = router;

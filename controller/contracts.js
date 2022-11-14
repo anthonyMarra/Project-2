@@ -1,19 +1,8 @@
 const { receiveMessageOnPort } = require("worker_threads")
 const Contract = require("../models/contract")
 
-function create(req, res) {
-    req.body.user = req.user
-    const contract = new Contract(req.body)
 
-    contract.save(function (err) {
-        if (err) {
-            return res.render("contracts/new", { title: "Creating New Contract" })
-        } else {
-            return res.redirect("contracts")
-            //`contracts/${contract._id}`
-        }
-    })
-}
+
 function index(req, res) {
     Contract.find().populate("user").then(function (populated) {
         res.render("contracts/index", { contracts: populated, title: "Browse Contracts" })
@@ -46,31 +35,37 @@ function deleteContract(req, res, next) {
         })
 }
 
-function update(req, res) {
-    Contract.findOne({
-        "_id": req.params.id,
-        "user": req.user.id
+function create(req, res) {
+    req.body.user = req.user
+    const contract = new Contract(req.body)
+
+    contract.save(function (err) {
+        if (err) {
+            return res.render("contracts/new", { title: "Creating New Contract" })
+        } else {
+            return res.redirect("contracts")
+            //`contracts/${contract._id}`
+        }
     })
-        .then(function (contract) {
-            if (!contract) {
-                return res.redirect("/contracts")
-            }
-            contract.remove(req.params.id)
-        })
-        .then(function (contract) {
-            if (!contract) {
-                // res.redirect("/")
-            }
-        })
-        .catch(function (err) {
-            return next(err)
-        })
 }
+
+// function update(req, res) {
+//     // Contract.findOne({
+//     //     "_id": req.params.id,
+//     //     "user": req.user.id
+//     //     // .update
+//     // })
+//     const id = req.params.id
+//     const updatedContract = {
+
+//     }
+
+// }
 
 module.exports = {
     create,
     index,
     new: newContract,
-    update,
+    // update,
     delete: deleteContract
 }

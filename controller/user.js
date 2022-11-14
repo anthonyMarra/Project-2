@@ -1,3 +1,5 @@
+const { models } = require("mongoose")
+const { receiveMessageOnPort } = require("worker_threads")
 const User = require("../models/user")
 
 function create(req, res) {
@@ -15,7 +17,20 @@ function index(req, res) {
     User.find({}, function (err, users) {
         res.render("users/index", { users })
     })
-
 }
 
-module.exports = { create, index }
+function update(req, res) {
+    console.log(req.body)
+    const id = req.params.id
+    Contract.findOne({
+        "_id": req.params.id,
+        "user": req.user.id
+    })
+    const updatedWishlist = {
+        wishList: wishList.push(req.body.wishList)
+    }
+    models.Post.updateOne(updatedWishlist, { where: { id: id } })
+
+    res.redirect("/")
+}
+module.exports = { create, index, update }
